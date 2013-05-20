@@ -156,7 +156,7 @@ module MotionModel
 
     def _has_many_has_one_relation(col) # nodoc
       related_klass = col.classify
-      related_klass.find(col.inverse_column.foreign_key).belongs_to(self, related_klass).eq(_get_attr(:id))
+      related_klass.find(col.inverse_column.foreign_key).belongs_to(self, related_klass).eq(_get_attr(:id)).first
     end
 
     def do_insert(options = {})
