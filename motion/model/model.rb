@@ -665,6 +665,7 @@ module MotionModel
     end
 
     def get_has_one_attr(col)
+      return _get_attr(col) if _get_attr(col)
       _has_many_has_one_relation(col)
     end
 
@@ -780,6 +781,7 @@ module MotionModel
     end
 
     def rebuild_relation(col, instance_or_collection, options = {}) # nodoc
+      _set_attr(col.name, instance_or_collection)
     end
 
     def unload_relation(col)
