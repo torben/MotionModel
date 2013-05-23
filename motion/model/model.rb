@@ -661,12 +661,12 @@ module MotionModel
     end
 
     def get_has_many_attr(col)
-      _has_many_has_one_relation(col)
+      has_many_relation(col)
     end
 
     def get_has_one_attr(col)
       return _get_attr(col) if _get_attr(col)
-      _has_many_has_one_relation(col)
+      has_one_relation(col)
     end
 
     # Associate the owner but without rebuilding the inverse assignment
@@ -704,10 +704,10 @@ module MotionModel
       collection = get_has_many_attr(_col)
       _collection = []
       instances.each do |instance|
-        next if collection.include?(instance)
+        next if collection.blank?# || collection.include?(instance)
         _collection << instance
       end
-      push_relation(_col, *_collection)
+      push_relation(_col, _collection)
       instances
     end
 
@@ -782,6 +782,9 @@ module MotionModel
 
     def rebuild_relation(col, instance_or_collection, options = {}) # nodoc
       _set_attr(col.name, instance_or_collection)
+    end
+
+    def unload_relation(col)
     end
 
     def unload_relation(col)

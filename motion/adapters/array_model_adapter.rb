@@ -147,14 +147,11 @@ module MotionModel
     end
 
     def has_many_relation(col) # nodoc
-      _has_many_has_one_relation(col)
+      related_klass = col.classify
+      related_klass.find(col.inverse_column.foreign_key).belongs_to(self, related_klass).eq(_get_attr(:id)).all
     end
 
     def has_one_relation(col) # nodoc
-      _has_many_has_one_relation(col)
-    end
-
-    def _has_many_has_one_relation(col) # nodoc
       related_klass = col.classify
       related_klass.find(col.inverse_column.foreign_key).belongs_to(self, related_klass).eq(_get_attr(:id)).first
     end
