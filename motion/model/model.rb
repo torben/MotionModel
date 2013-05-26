@@ -455,6 +455,10 @@ module MotionModel
       attrs.each { |k, v| set_attr(k, v) }
     end
 
+    def write_attributes(attrs)
+      self.attributes = attrs
+    end
+
     def update_attributes(attrs)
       self.attributes = attrs
       save
