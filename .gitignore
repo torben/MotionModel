@@ -7,3 +7,5 @@ resources/*.storyboardc
 doc/**/*.*
 doc
 *.gem
+
+.rvmrc
