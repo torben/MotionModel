@@ -715,6 +715,9 @@ module MotionModel
       instances
     end
 
+    def push_relation(col, collection)
+    end
+
     # TODO clean up existing reference, check rails
     def set_has_many_attr(col, *instances)
       _col = column(col)
